@@ -40,7 +40,7 @@ const Navbar = () => {
         </li>
       )}
       <li className=" hover:text-orange-600">
-        <Link to="/showAllReview">About</Link>
+        <Link to="/about">About</Link>
       </li>
 
       {user && (

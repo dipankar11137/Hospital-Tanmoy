@@ -7,6 +7,7 @@ import "./App.css";
 import CreateAccount from "./Components/Login/CreateAccount";
 import Login from "./Components/Login/Login";
 import RequireAuth from "./Components/Login/RequireAUth";
+import About from "./Components/Pages/About/About";
 import Bookings from "./Components/Pages/Dashboard/Boooking/Bookings";
 import Contact from "./Components/Pages/Dashboard/Contact.js/Contact";
 import ManageContacts from './Components/Pages/Dashboard/Contact.js/Manage Contact/ManageContacts';
@@ -50,7 +51,7 @@ function App() {
       </div>
       <Routes>
         <Route path="/" element={<Home />}></Route>
-        {/* <Route path="/appointment" element={<Appointment />}></Route> */}
+        <Route path="/about" element={<About />}></Route>
         <Route path="/createAccount" element={<CreateAccount />}></Route>
         <Route path="/payment/:id" element={<Payment />} />
 
