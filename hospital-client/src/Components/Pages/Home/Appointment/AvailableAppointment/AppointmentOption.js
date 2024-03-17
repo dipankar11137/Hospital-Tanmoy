@@ -10,11 +10,11 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
             style={{ marginTop: '-100px' }}
             className="  mb-4 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
           >
-            {option?.user?.image ? (
-              <img src={option?.user?.image} alt="" />
+            {option?.img? (
+              <img src={option?.img} alt="" />
             ) : (
               <img
-                src="https://apicms.thestar.com.my/uploads/images/2022/05/15/1585587.jpg"
+                src="https://images.assetsdelivery.com/compings_v2/indomercy/indomercy1501/indomercy150100019.jpg"
                 alt=""
               />
             )}
@@ -23,7 +23,7 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
 
         <div>
           <h2 className="card-title font-bold">{name}</h2>
-          <p className="text-[10px] my-1 font-semibold">MBBS FCPS USA</p>
+          <p className="text-[10px] my-1 font-semibold">{option?.degree}</p>
         </div>
 
         {day === option?.day ||

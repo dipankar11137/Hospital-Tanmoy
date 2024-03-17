@@ -8,6 +8,7 @@ import CreateAccount from "./Components/Login/CreateAccount";
 import Login from "./Components/Login/Login";
 import RequireAuth from "./Components/Login/RequireAUth";
 import About from "./Components/Pages/About/About";
+import AddDoctor from "./Components/Pages/Dashboard/AddDoctor/AddDoctor";
 import Bookings from "./Components/Pages/Dashboard/Boooking/Bookings";
 import Contact from "./Components/Pages/Dashboard/Contact.js/Contact";
 import ManageContacts from './Components/Pages/Dashboard/Contact.js/Manage Contact/ManageContacts';
@@ -15,6 +16,7 @@ import Dashboard from './Components/Pages/Dashboard/Dashboard';
 import MyBookings from './Components/Pages/Dashboard/MyBookings/MyBookings';
 import Payment from './Components/Pages/Dashboard/MyBookings/Payment';
 import Profile from './Components/Pages/Dashboard/Profile/Profile';
+import Appointment from "./Components/Pages/Home/Appointment/Appointment/Appointment";
 import Home from './Components/Pages/Home/Home';
 import Header from "./Components/Share/Header";
 import Navbar from "./Components/Share/Navbar";
@@ -39,7 +41,6 @@ function App() {
   return (
     <div className="font-robot">
       <div className="duration-1000">
-      
         <Header />
       </div>
       <div
@@ -54,6 +55,7 @@ function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/createAccount" element={<CreateAccount />}></Route>
         <Route path="/payment/:id" element={<Payment />} />
+        <Route path="appointment" element={<Appointment />} />
 
         <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
@@ -67,10 +69,11 @@ function App() {
             </RequireAuth>
           }
         >
-          <Route index element={<Home />} />
-          <Route path="booking" element={<Bookings />} />
+          <Route index element={<Bookings />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="addDoctor" element={<AddDoctor />} />
           <Route path="myBooking" element={<MyBookings />} />
-          {/* <Route path="appointment" element={<Appointment />} /> */}
+
           <Route path="manageContact" element={<ManageContacts />} />
           <Route path="profile" element={<Profile />} />
           <Route path="contact" element={<Contact />} />

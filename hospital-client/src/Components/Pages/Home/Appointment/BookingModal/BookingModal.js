@@ -17,7 +17,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
     const booking = {
       appointmentDate: date,
       slot,
-      teacherName: name,
+      doctorName: name,
       // studentName: user?.name,
       // studentID: user?.iId,
       // studentsEmail: user?.email,

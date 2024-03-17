@@ -9,8 +9,6 @@ const AvailableAppointment = ({ selectDate }) => {
   const date = format(selectDate, 'PP', 'MMMM d');
   const today1 = new Date();
   const today = format(today1, 'PP', 'MMMM d');
-  console.log('hello', date);
-  console.log('hello 1', today);
   const day = format(selectDate, 'EEEE');
   // console.log(day);
   // test
@@ -32,6 +30,7 @@ const AvailableAppointment = ({ selectDate }) => {
     queryKey: ['appointmentOptions', date],
     queryFn: () =>
       fetch(`http://localhost:5000/appointments?date=${date}`).then(res =>
+    
         res.json()
       ),
   });
@@ -39,7 +38,7 @@ const AvailableAppointment = ({ selectDate }) => {
   //   return <Loading />;
   // }
   return (
-    <section className="mt-6 mx-40 mb-20">
+    <section className="mt-6 mx-40 pb-20">
       {/* {today <= date ? <h1>Right</h1> : <h1>Wrong</h1>} */}
       {result ? (
         <p className="text-3xl  text-center mt-10 text-green-900 font-bold mb-16">

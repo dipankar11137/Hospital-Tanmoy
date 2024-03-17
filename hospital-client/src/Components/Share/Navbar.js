@@ -1,7 +1,6 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { FaHome } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 
@@ -26,11 +25,11 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      <li className=" hover:text-orange-600  text-xl">
+      {/* <li className=" hover:text-orange-600  text-xl">
         <Link to="/">
           <FaHome className="text-slate-400" />
         </Link>
-      </li>
+      </li> */}
       <li className=" hover:text-orange-600">
         <Link to="/blogs">Find A Doctor</Link>
       </li>
