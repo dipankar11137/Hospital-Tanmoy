@@ -62,7 +62,10 @@ const AddDoctor = () => {
           }
           const changeUrl = {
             name: data.name,
-            degree:data.degree,
+            degree: data.degree,
+            email: data.email,
+            phone: data.phone,
+            description:data.description,
             img: image,
             department,
             saturday,
@@ -102,7 +105,7 @@ const AddDoctor = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
             {/* 1st colum */}
-            <div className="col-span-4">
+            <div className="col-span-3">
               {/* name */}
               <div>
                 <label className="label">
@@ -113,7 +116,7 @@ const AddDoctor = () => {
                 <input
                   type="text"
                   placeholder="Doctor name"
-                  className="input input-bordered bg-white text-black lg:w-96 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[35px]"
+                  className="input input-bordered bg-white text-black lg:w-72 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[35px]"
                   {...register('name', {
                     required: {
                       value: true,
@@ -129,17 +132,54 @@ const AddDoctor = () => {
                   )}
                 </label>
               </div>
+              {/* email */}
+              <div>
+                <input
+                  type="email"
+                  placeholder="Doctor Email"
+                  className="input input-bordered bg-white text-black lg:w-72 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[35px]"
+                  {...register('email', {
+                    required: {
+                      value: true,
+                      message: 'Email is Required',
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.email?.type === 'required' && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.email?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              {/* phone */}
+              <div>
+                <input
+                  type="phone"
+                  placeholder="Doctor Phone Number"
+                  className="input input-bordered bg-white text-black lg:w-72 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[35px]"
+                  {...register('phone', {
+                    required: {
+                      value: true,
+                      message: 'Phone is Required',
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.phone?.type === 'required' && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.phone?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
               {/* degree */}
               <div>
-                <label className="label">
-                  <span className="label-text text-xl font-semibold ">
-                    Degree
-                  </span>
-                </label>
                 <input
                   type="text"
                   placeholder="Degree name"
-                  className="input input-bordered bg-white text-black lg:w-96 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[35px]"
+                  className="input input-bordered bg-white text-black lg:w-72 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[35px]"
                   {...register('degree', {
                     required: {
                       value: true,
@@ -151,6 +191,27 @@ const AddDoctor = () => {
                   {errors.degree?.type === 'required' && (
                     <span className="label-text-alt text-red-500">
                       {errors?.degree?.message}
+                    </span>
+                  )}
+                </label>
+              </div>
+              {/* description */}
+              <div>
+                <textarea
+                  type="text"
+                  placeholder="About Doctor"
+                  className="input input-bordered bg-white text-black lg:w-72 sm:w-full max-w-xs hover:shadow-xl shadow-inner border-blue-900 h-[60px] "
+                  {...register('description', {
+                    required: {
+                      value: true,
+                      message: 'About Doctor is Required',
+                    },
+                  })}
+                />
+                <label className="label">
+                  {errors.description?.type === 'required' && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.description?.message}
                     </span>
                   )}
                 </label>
@@ -189,6 +250,9 @@ const AddDoctor = () => {
                   <option>Emergency Medicine</option>
                 </select>
               </div>
+            </div>
+            {/* off days */}
+            <div className="col-span-3 ">
               {/* img */}
               <div>
                 {/* image */}
@@ -199,7 +263,7 @@ const AddDoctor = () => {
                 </label>
                 <input
                   type="file"
-                  className="input input-bordered text-black lg:w-96 sm:w-full max-w-xs pt-1    hover:shadow-xl shadow-inner h-[40px]"
+                  className="input input-bordered text-black lg:w-72 sm:w-full max-w-xs pt-1    hover:shadow-xl shadow-inner h-[40px]"
                   {...register('image', {
                     required: {
                       value: true,
@@ -216,9 +280,6 @@ const AddDoctor = () => {
                   )}
                 </label>
               </div>
-            </div>
-            {/* off days */}
-            <div className="col-span-2 ">
               <h1 className="text-3xl font-semibold mb-3 text-red-700">
                 Off Days
               </h1>
@@ -228,7 +289,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={saturday}
                   onChange={e => setSaturday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Saturday
@@ -239,7 +300,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={sunday}
                   onChange={e => setSunday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Sunday
@@ -250,7 +311,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={monday}
                   onChange={e => setMonday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Monday
@@ -261,7 +322,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={tuesday}
                   onChange={e => setTuesday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Tuesday
@@ -272,7 +333,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={wednesday}
                   onChange={e => setWednesday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Wednesday
@@ -283,7 +344,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={thursday}
                   onChange={e => setThursday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Thursday
@@ -294,7 +355,7 @@ const AddDoctor = () => {
                   type="checkbox"
                   checked={friday}
                   onChange={e => setFriday(e.target.checked)}
-                  className="checkbox checkbox-primary checkbox-sm"
+                  className="checkbox checkbox-secondary checkbox-sm"
                 />
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Friday

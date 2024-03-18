@@ -12,17 +12,21 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
     const form = event.target;
     const slot = form.slot.value;
     const problem = form.problem.value;
+    const patientName = form.patientName.value;
+    const address = form.address.value;
     const phone = form.phone.value;
 
     const booking = {
       appointmentDate: date,
       slot,
       doctorName: name,
+      patientName,
+      address,
       // studentName: user?.name,
       // studentID: user?.iId,
       // studentsEmail: user?.email,
       // email: counseling?.email,
-      // phone: phone || user?.phone,
+      phone,
       // studentImg: user?.image,
       problem,
     };
@@ -51,18 +55,21 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
         <div className="modal-box relative">
           <label
             htmlFor="booking-modal"
-            className="btn btn-sm btn-circle btn-warning absolute right-2 top-2"
+            className="btn btn-sm btn-circle btn-secondary text-white absolute right-0 top-0"
           >
             ✕
           </label>
-          <h3 className="text-2xl font-semibold pl-1">{name}</h3>
+          <div className="flex justify-between ">
+            <h3 className="text-2xl font-semibold pl-1">{name}</h3>
+            <h3 className="mr-5">{date}</h3>
+          </div>
           <form onSubmit={handleBooking}>
-            <input
+            {/* <input
               type="text"
               value={date}
               placeholder="Type here"
               className="input input-bordered input-primary w-full  mt-6"
-            />
+            /> */}
             <select
               name="slot"
               className="select select-bordered select-primary mt-3 w-full "
@@ -81,13 +88,25 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
               className="input input-bordered input-primary pt-1 h-20 w-full  mt-2"
             />
             <input
+              name="patientName"
+              type="name"
+              placeholder="You Name"
+              className="input input-bordered input-primary w-full  mt-2"
+            />
+            <input
               name="phone"
               type="phone"
               placeholder="You phone number"
               className="input input-bordered input-primary w-full  mt-2"
             />
+            <textarea
+              name="address"
+              type="Text"
+              placeholder="Your Address"
+              className="input input-bordered input-primary pt-1 h-20 w-full  mt-2"
+            />
 
-            <input className="w-full mt-5 btn " type="submit" value="Submit" />
+            <input className="w-full mt-5 btn btn-primary text-white" type="submit" value="Submit" />
           </form>
         </div>
       </div>

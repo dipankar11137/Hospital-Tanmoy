@@ -30,9 +30,9 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
                 <div className="">
                   <label
                     htmlFor="my_modal_7"
-                    className="modal-backdrop   text-2xl font-semibold text-white  fixed ml-[290px] bg-red-500  px-[9px] py-[0px]  rounded-full cursor-pointer"
+                    className="modal-backdrop   text-xl font-semibold text-white  fixed ml-[290px] bg-red-600  px-[9px] py-[3px]  rounded-full cursor-pointer"
                   >
-                    x
+                    ✕
                   </label>
                 </div>
 
