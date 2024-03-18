@@ -27,15 +27,15 @@ const AppointmentBanner = ({ selectDate, setSelectDate }) => {
           <div className="hero  ">
             <div className="hero-content flex-col lg:flex-row-reverse gap-x-4">
               <div className="mr-20 font-bold">
-                <div className="fixed ml-[290px] bg-red-500  px-[9px] py-[0px]  rounded-full cursor-pointer">
+                <div className="">
                   <label
                     htmlFor="my_modal_7"
-                    className="modal-backdrop  font-robot text-2xl font-semibold text-white cursor-pointer"
+                    className="modal-backdrop   text-2xl font-semibold text-white  fixed ml-[290px] bg-red-500  px-[9px] py-[0px]  rounded-full cursor-pointer"
                   >
                     x
                   </label>
                 </div>
-               
+
                 {/* Pick This day */}
                 <DayPicker
                   mode="single"

@@ -76,7 +76,7 @@ const AddDoctor = () => {
           };
           console.log(changeUrl);
 
-          fetch(`https:///rents`, {
+          fetch(`http://localhost:5000/appointments`, {
             method: 'POST',
             headers: {
               'content-type': 'application/json',

@@ -2,15 +2,16 @@ import React from "react";
 
 const AppointmentOption = ({ option, setCounseling, day }) => {
   const { name, slots } = option;
+  const modifyDay = day.toLowerCase();
   return (
-    <div className="card  bg-base-100 shadow-xl">
+    <div className="card border-[1px] border-primary hover:border-orange-600 cursor-pointer bg-base-100 shadow-xl">
       <div className="card-body">
         <div className="avatar">
           <div
             style={{ marginTop: '-100px' }}
-            className="  mb-4 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
+            className="bg-white  mb-4 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2"
           >
-            {option?.img? (
+            {option?.img ? (
               <img src={option?.img} alt="" />
             ) : (
               <img
@@ -23,15 +24,20 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
 
         <div>
           <h2 className="card-title font-bold">{name}</h2>
-          <p className="text-[10px] my-1 font-semibold">{option?.degree}</p>
+          <p className="text-[10px] my-1 font-normal">{option?.degree}</p>
         </div>
 
-        {day === option?.day ||
-        day === option?.day1 ||
-        day === option?.day2 ||
-        day === option?.day3 ? (
+        {
+         modifyDay==='friday' & option?.friday ||
+         modifyDay==='saturday' & option?.saturday ||
+         modifyDay==='sunday' & option?.sunday ||
+         modifyDay==='monday' & option?.monday ||
+         modifyDay==='tuesday' & option?.tuesday ||
+         modifyDay==='wednesday' & option?.wednesday ||
+         modifyDay==='thursday' & option?.thursday 
+        ? (
           <>
-            <h1 className="text-center text-sm font-bold">
+            <h1 className="text-center text-sm text-indigo-800 font-bold">
               This Day is Off day
             </h1>
             <h1 className="text-red-500 text-sm font-bold text-center">
