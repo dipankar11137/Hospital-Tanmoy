@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 const AddDoctor = () => {
   const imageHostKey = 'c70a5fc10619997bd7315f2bf28d0f3e';
   
-
+const [loading,setLoading]=useState(false)
   const [department, setDepartment] = useState('')
   const [saturday,setSaturday]=useState(false)
   const [sunday,setSunday]=useState(false)
@@ -42,7 +42,8 @@ const AddDoctor = () => {
    };
 
 
-    const onSubmit = data => {
+  const onSubmit = data => {
+      setLoading(true)
      
       const image = data.image[0];
 
@@ -88,13 +89,14 @@ const AddDoctor = () => {
           })
             .then(res => res.json())
             .then(data => {
+              setLoading(false)
               toast.success('Successfully Add This ');
               reset();
             });
         });
     };
   return (
-    <div>
+    <div className='mx-5'>
       <h1 className="text-4xl my-1 text-center font-semibold text-primary">
         Add Doctor
       </h1>
@@ -253,33 +255,6 @@ const AddDoctor = () => {
             </div>
             {/* off days */}
             <div className="col-span-3 ">
-              {/* img */}
-              <div>
-                {/* image */}
-                <label className="label">
-                  <span className="label-text text-xl font-semibold ">
-                    Input Doctor Image{' '}
-                  </span>
-                </label>
-                <input
-                  type="file"
-                  className="input input-bordered text-black lg:w-72 sm:w-full max-w-xs pt-1    hover:shadow-xl shadow-inner h-[40px]"
-                  {...register('image', {
-                    required: {
-                      value: true,
-                      message: 'Image is Required',
-                    },
-                  })}
-                />
-
-                <label className="label">
-                  {errors.image?.type === 'required' && (
-                    <span className="label-text-alt text-red-500">
-                      {errors?.image?.message}
-                    </span>
-                  )}
-                </label>
-              </div>
               <h1 className="text-3xl font-semibold mb-3 text-red-700">
                 Off Days
               </h1>
@@ -350,7 +325,7 @@ const AddDoctor = () => {
                   Thursday
                 </h1>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-12">
                 <input
                   type="checkbox"
                   checked={friday}
@@ -360,6 +335,33 @@ const AddDoctor = () => {
                 <h1 className="text-xl  font-semibold text-indigo-900">
                   Friday
                 </h1>
+              </div>
+              {/* img */}
+              <div>
+                {/* image */}
+                <label className="label">
+                  <span className="label-text text-xl font-semibold ">
+                    Input Doctor Image{' '}
+                  </span>
+                </label>
+                <input
+                  type="file"
+                  className="input input-bordered text-black lg:w-72 sm:w-full max-w-xs pt-1    hover:shadow-xl shadow-inner h-[40px]"
+                  {...register('image', {
+                    required: {
+                      value: true,
+                      message: 'Image is Required',
+                    },
+                  })}
+                />
+
+                <label className="label">
+                  {errors.image?.type === 'required' && (
+                    <span className="label-text-alt text-red-500">
+                      {errors?.image?.message}
+                    </span>
+                  )}
+                </label>
               </div>
             </div>
             {/* slots */}
@@ -392,11 +394,17 @@ const AddDoctor = () => {
             </div>
           </div>
 
-          <input
-            className="btn btn-primary mt-5 w-full disable text-white"
-            type="submit"
-            value="ADD"
-          />
+          {loading ? (
+            <h1 className="btn btn-primary mt-5 w-full cursor-not-allowed text-white">
+              Loading ...
+            </h1>
+          ) : (
+            <input
+              className="btn btn-primary mt-5 w-full  text-white"
+              type="submit"
+              value="ADD"
+            />
+          )}
         </form>
       </div>
     </div>

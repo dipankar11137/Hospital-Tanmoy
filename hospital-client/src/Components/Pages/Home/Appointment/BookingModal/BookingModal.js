@@ -1,11 +1,14 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import auth from "../../../../../firebase.init";
 
 const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
   const date = format(selectDate, "PP");
-  const { name, slots } = counseling;
-  // const [user] = User();
+  const { name, slots,department } = counseling;
+  const [user] = useAuthState(auth);
+  // console.log(user?.email);
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -22,12 +25,9 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
       doctorName: name,
       patientName,
       address,
-      // studentName: user?.name,
-      // studentID: user?.iId,
-      // studentsEmail: user?.email,
-      // email: counseling?.email,
+      department,
       phone,
-      // studentImg: user?.image,
+      email:user?.email,
       problem,
     };
 
