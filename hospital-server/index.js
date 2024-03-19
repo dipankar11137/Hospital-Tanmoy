@@ -11,9 +11,9 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.evn2ej1.mongodb.net/?retryWrites=true&w=majority`;
-const uri =
-  'mongodb+srv://hospital:rsk9hH3N58AjCkwF@cluster0.4fc6dmw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.evn2ej1.mongodb.net/?retryWrites=true&w=majority`;
+// const uri =
+//   'mongodb+srv://hospital:fULCVwPV1dEhA4uH@cluster0.qpdn9hl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
 
 
@@ -32,9 +32,6 @@ async function run() {
       .db('hospital')
       .collection('appointments');
 
-    // const appointmentCollection = client
-    //   .db("hospital")
-    //   .collection("appointments");
     const bookingCollection = client.db('hospital').collection('bookings');
     const contactCollection = client.db('hospital').collection('contacts');
 
@@ -86,14 +83,14 @@ async function run() {
       const date = req.query.date;
       const query = {};
       const options = await appointmentCollection.find(query).toArray();
-      const bookingQuery = { date: date };
+      const bookingQuery = { appointmentDate: date };
       const alreadyBooked = await bookingCollection
         .find(bookingQuery)
         .toArray();
       //
       options.forEach(option => {
         const optionBooked = alreadyBooked.filter(
-          book => book.terminalName === option.name
+          book => book.doctorName === option.name
         );
         const bookedSlots = optionBooked.map(book => book.slot);
         const remainingSlots = option.slots.filter(
@@ -108,6 +105,20 @@ async function run() {
     app.post('/appointments', async (req, res) => {
       const appointmentsBook = req.body;
       const result = await appointmentCollection.insertOne(appointmentsBook);
+      res.send(result);
+    });
+    // get doctoe
+    app.get('/doctor', async (req, res) => {
+      const query = {};
+      const cursor = appointmentCollection.find(query);
+      const users = await cursor.toArray();
+      res.send(users);
+    });
+    // get doctor by id
+    app.get('/doctor/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await appointmentCollection.findOne(query);
       res.send(result);
     });
     // post Booking/ terminal
@@ -210,9 +221,9 @@ async function run() {
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Running Cargo Booking ");
+  res.send("Running Hospital ");
 });
 
 app.listen(port, () => {
-  console.log("Cargo Booking  server is running ");
+  console.log("Hospital  server is running ");
 });
