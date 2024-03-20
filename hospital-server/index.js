@@ -121,6 +121,13 @@ async function run() {
       const result = await appointmentCollection.findOne(query);
       res.send(result);
     });
+    // Delete one contact
+    app.delete('/doctorDelete/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await appointmentCollection.deleteOne(query);
+      res.send(result);
+    });
     // post Booking/ terminal
     app.post('/bookings', async (req, res) => {
       const newBooking = req.body;
