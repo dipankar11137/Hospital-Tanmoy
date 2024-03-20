@@ -76,7 +76,6 @@ async function run() {
     });
 
     // // //  *********  appointments  ********//
- 
 
     // // get appointments to query multiple collection  and them marge data
     app.get('/appointments', async (req, res) => {
@@ -86,7 +85,7 @@ async function run() {
       if (department) {
         query.department = department; // Add department filter to the query
       }
-     
+
       const options = await appointmentCollection.find(query).toArray();
       const bookingQuery = { appointmentDate: date };
       const alreadyBooked = await bookingCollection
@@ -107,35 +106,13 @@ async function run() {
       res.send(options);
     });
 
-    // app.get('/appointments', async (req, res) => {
-    //   const date = req.query.date;
-    //   const query = {};
-    //   const options = await appointmentCollection.find(query).toArray();
-    //   const bookingQuery = { appointmentDate: date };
-    //   const alreadyBooked = await bookingCollection
-    //     .find(bookingQuery)
-    //     .toArray();
-    //   //
-    //   options.forEach(option => {
-    //     const optionBooked = alreadyBooked.filter(
-    //       book => book.doctorName === option.name
-    //     );
-    //     const bookedSlots = optionBooked.map(book => book.slot);
-    //     const remainingSlots = option.slots.filter(
-    //       slot => !bookedSlots.includes(slot)
-    //     );
-    //     option.slots = remainingSlots;
-    //   });
-    //   res.send(options);
-    // });
-
     // Post appointments
     app.post('/appointments', async (req, res) => {
       const appointmentsBook = req.body;
       const result = await appointmentCollection.insertOne(appointmentsBook);
       res.send(result);
     });
-    // get doctoe
+    // get doctor
     app.get('/doctor', async (req, res) => {
       const query = {};
       const cursor = appointmentCollection.find(query);
@@ -148,6 +125,36 @@ async function run() {
       const query = { _id: ObjectId(id) };
       const result = await appointmentCollection.findOne(query);
       res.send(result);
+    });
+    // update doctor
+    app.put('/updateDoctor/:id', async (req, res) => {
+      const productId = req.params.id;
+      const updateDoctor = req.body;
+
+      const filter = { _id: ObjectId(productId) }; // Assuming you're using MongoDB ObjectId
+      const options = { upsert: true };
+
+      const updatedDoc = {
+        $set: updateDoctor,
+      };
+
+      try {
+        const result = await appointmentCollection.updateOne(
+          filter,
+          updatedDoc,
+          options
+        );
+        res.json({
+          success: true,
+          message: 'DOctor updated successfully',
+          data: result,
+        });
+      } catch (error) {
+        console.error('Error updating DOctor:', error);
+        res
+          .status(500)
+          .json({ success: false, message: 'Internal server error' });
+      }
     });
     //  Booking filter by department
     app.get('/doctorDepartment/:department', async (req, res) => {
