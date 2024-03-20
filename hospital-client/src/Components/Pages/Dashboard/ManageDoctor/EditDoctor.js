@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EditDoctor = () => {
   const [doctor, setDoctor] = useState({});
@@ -14,7 +15,7 @@ const EditDoctor = () => {
     const [wednesday, setWednesday] = useState(false);
     const [thursday, setThursday] = useState(false);
     const [friday, setFriday] = useState(false);
-  
+  const navigator=useNavigate()
    const { id } = useParams();
    useEffect(() => {
      fetch(`http://localhost:5000/doctor/${id}`)
@@ -28,13 +29,15 @@ useEffect(() => {
     setSunday(doctor.sunday ? true : false);
     setMonday(doctor.monday ? true : false);
     setTuesday(doctor.tuesday ? true : false);
+    setWednesday(doctor.wednesday ? true : false);
+    setThursday(doctor.thursday ? true : false);
+    setFriday(doctor.friday ? true : false);
   }, 3000);
 
   // Cleanup function to clear the timeout
   return () => clearTimeout(timer);
 }, [id]);
-console.log(doctor?.wednesday);
-console.log('dado',!doctor?.saturday);
+
   const {
     register,
     formState: { errors },
@@ -57,7 +60,46 @@ console.log('dado',!doctor?.saturday);
     setValue(value);
     setArrays(newArray);
   };
-  const onSubmit = data => { }
+
+
+  const onSubmit = data => {
+    const slots = [];
+    for (let i = 1; i <= value; i++) {
+      slots.push(data[`slot${i}`]);
+    }
+    const updateDoctor = {
+      saturday:saturday||doctor.saturday,
+      sunday:sunday||doctor.sunday,
+      monday:monday||doctor.monday,
+      tuesday:tuesday||doctor.tuesday,
+      wednesday:wednesday||doctor.wednesday,
+      thursday:thursday||doctor.thursday,
+      friday:friday||doctor.friday,
+      name: data.name || doctor.name,
+      email: data.email || doctor.email,
+      phone: data.phone || doctor.phone,
+      degree: data.degree || doctor.degree,
+      description: data.description || doctor.description,
+      img: data.img || doctor.img,
+      department: department || doctor.department,
+      slots:doctor.slots||slots
+    };
+  
+      fetch(`http://localhost:5000/updateDoctor/${id}`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(updateDoctor),
+      })
+        .then(res => res.json())
+        .then(data => {
+          setLoading(false);
+          toast.success('Update Successful');
+
+          navigator('/dashboard/manageDoctor');
+        });
+   }
   return (
     <div>
       <div className="m-5 rounded-lg bg-indigo-200">
@@ -264,10 +306,7 @@ console.log('dado',!doctor?.saturday);
                   }
                   className="input input-bordered text-black lg:w-72 sm:w-full max-w-xs  hover:shadow-xl shadow-inner h-[40px]"
                   {...register('img', {
-                    required: {
-                      value: true,
-                      message: 'Image is Required',
-                    },
+                   
                   })}
                 />
 

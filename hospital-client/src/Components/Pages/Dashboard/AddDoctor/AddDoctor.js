@@ -78,7 +78,7 @@ const [loading,setLoading]=useState(false)
             friday,
             slots,
           };
-          console.log(changeUrl);
+          // console.log(changeUrl);
 
           fetch(`http://localhost:5000/appointments`, {
             method: 'POST',
