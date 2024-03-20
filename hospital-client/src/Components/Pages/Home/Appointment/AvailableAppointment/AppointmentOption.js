@@ -23,7 +23,8 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
         </div>
 
         <div>
-          <h2 className="card-title font-bold">{name}</h2>
+          <h2 className="card-title font-bold -mt-4">{name}</h2>
+          <p className="text-[10px] my-1 font-semibold text-slate-800">{option?.department}</p>
           <p className="text-[10px] my-1 font-normal">{option?.degree}</p>
         </div>
 

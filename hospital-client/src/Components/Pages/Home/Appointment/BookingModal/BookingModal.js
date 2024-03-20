@@ -64,12 +64,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
             <h3 className="mr-5">{date}</h3>
           </div>
           <form onSubmit={handleBooking}>
-            {/* <input
-              type="text"
-              value={date}
-              placeholder="Type here"
-              className="input input-bordered input-primary w-full  mt-6"
-            /> */}
+            
             <select
               name="slot"
               className="select select-bordered select-primary mt-3 w-full "
@@ -95,7 +90,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
             />
             <input
               name="phone"
-              type="phone"
+              type="number"
               placeholder="You phone number"
               className="input input-bordered input-primary w-full  mt-2"
             />
