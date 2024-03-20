@@ -87,9 +87,9 @@ const Navbar = () => {
             Sign Out
           </button>
         ) : (
-          <ul className="mr-5">
+          <ul className="mr-8">
             <li>
-              <Link to="/login">Login</Link>
+              <Link className="text-lg" to="/login">Login</Link>
             </li>
           </ul>
         )}

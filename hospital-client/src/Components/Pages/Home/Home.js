@@ -10,6 +10,8 @@ import SImpleProcess from "./SImpleProcess/SImpleProcess";
 import Welcome from "./Welcome/Welcome";
 import WhyChoseUs from "./WhyChoseUs/WhyChoseUs";
 
+import { IoIosArrowDropupCircle } from 'react-icons/io';
+
 const Home = () => {
   const navigator=useNavigate()
   const handleClick = () => {
@@ -17,7 +19,30 @@ const Home = () => {
   }
  const scrollToBottom = () => {
    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
- };
+  };
+    const handleUpper = () => {
+      const duration = 500; // Duration of the scroll animation in milliseconds
+      const start = window.pageYOffset; // Initial scroll position
+      const distance = -window.pageYOffset; // Distance to scroll (back to top)
+      let startTime = null;
+
+      // Define the step function for scroll animation
+      const step = timestamp => {
+        if (!startTime) startTime = timestamp;
+        const progress = timestamp - startTime;
+        const easeInOutQuad = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t); // Easing function
+
+        window.scrollTo(
+          0,
+          start + distance * easeInOutQuad(Math.min(progress / duration, 1))
+        );
+
+        if (progress < duration) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
   return (
     <div className="bg-white pt-[66px] ">
       <Banner />
@@ -27,7 +52,7 @@ const Home = () => {
       <WhyChoseUs />
       <Facilities />
       <Consultants />
-      <Contact/>
+      <Contact />
       {/* <Appointment/> */}
       <Footer />
 
@@ -45,6 +70,14 @@ const Home = () => {
           className="btn btn-primary font-normal text-white "
         >
           Contact
+        </button>
+      </div>
+      <div className="fixed z-50 right-3 bottom-3 md:right-4">
+        <button
+          onClick={handleUpper}
+          className=" bg-primary flex justify-center items-center rounded-full"
+        >
+          <IoIosArrowDropupCircle className="text-5xl text-slate-50" />
         </button>
       </div>
     </div>

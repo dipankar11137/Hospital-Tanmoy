@@ -27,16 +27,16 @@ const Contact = () => {
               <span className="ml">16216</span>
             </button>
           </div>
-         
         </div>
         <div className="">
           <img
             style={{ marginTop: '-120px' }}
             className="h-96 cursor-pointer"
-            src="https://cdn-marketplacexyz.s3.ap-south-1.amazonaws.com/sheba_xyz/images/jpg/service-request.png"
+            src="https://www.thesteefogroup.com/wp-content/uploads/2021/11/contact_us.png"
             alt=""
           />
         </div>
+        
       </div>
     </div>
   );

@@ -12,10 +12,11 @@ import auth from '../../../firebase.init';
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
+   const { pathname } = useLocation();
 
   const [open, setOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState('Button 10');
-    const { pathname } = useLocation();
+   
 
     useEffect(() => {
       window.scrollTo(0, 0);
