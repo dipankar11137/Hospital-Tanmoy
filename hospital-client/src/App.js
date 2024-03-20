@@ -13,13 +13,13 @@ import Bookings from "./Components/Pages/Dashboard/Boooking/Bookings";
 import Contact from "./Components/Pages/Dashboard/Contact.js/Contact";
 import ManageContacts from './Components/Pages/Dashboard/Contact.js/Manage Contact/ManageContacts';
 import Dashboard from './Components/Pages/Dashboard/Dashboard';
-import DoctorDetails from "./Components/Pages/Dashboard/ManageDoctor/DoctorDetails";
 import EditDoctor from "./Components/Pages/Dashboard/ManageDoctor/EditDoctor";
 import ManageDoctors from "./Components/Pages/Dashboard/ManageDoctor/ManageDoctors";
 import MyBookings from './Components/Pages/Dashboard/MyBookings/MyBookings';
 import Payment from './Components/Pages/Dashboard/MyBookings/Payment';
 import Profile from './Components/Pages/Dashboard/Profile/Profile';
 import Appointment from "./Components/Pages/Home/Appointment/Appointment/Appointment";
+import DoctorDetails from "./Components/Pages/Home/Doctor Details/DoctorDetails";
 import Home from './Components/Pages/Home/Home';
 import Header from "./Components/Share/Header";
 import Navbar from "./Components/Share/Navbar";
@@ -59,7 +59,7 @@ function App() {
         <Route path="/createAccount" element={<CreateAccount />}></Route>
         <Route path="/payment/:id" element={<Payment />} />
         <Route path="appointment" element={<Appointment />} />
-
+        <Route path="/doctorDetails/:id" element={<DoctorDetails />} />
         <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
 
@@ -77,7 +77,7 @@ function App() {
           <Route path="addDoctor" element={<AddDoctor />} />
           <Route path="myBooking" element={<MyBookings />} />
           <Route path="manageDoctor" element={<ManageDoctors />} />
-          <Route path="doctorDetails/:id" element={<DoctorDetails />} />
+
           <Route path="editDoctor/:id" element={<EditDoctor />} />
           <Route path="manageContact" element={<ManageContacts />} />
           <Route path="profile" element={<Profile />} />

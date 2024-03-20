@@ -29,7 +29,7 @@ const Consultants = () => {
         </h1>
       </div>
       <div className="grid grid-cols-4 gap-12 mt-5">
-        {doctors.map(doctor => (
+        {doctors.slice(0,4).reverse().map(doctor => (
           <div className="text-center">
             <img
               className="h-64 w-64 rounded-full bg-slate-200"

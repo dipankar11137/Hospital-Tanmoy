@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
 import Footer from "../../../../Share/Footer";
 import BookingModal from '../BookingModal/BookingModal';
 import AppointmentOption from './AppointmentOption';
@@ -46,32 +47,14 @@ useEffect(() => {
 
  
   
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/doctorDepartment/${department}`)
-  //     .then(res => res.json())
-  //     .then(data => setDepartments(data));
-  // }, [department])
-  
+  const { pathname } = useLocation();
 
-console.log(departments);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
 
-  // test end
-  // const {
-  //   data: appointmentOptions = [],
-  //   refetch,
-  //   isLoading,
-  // } = useQuery({
-  //   queryKey: ['appointmentOptions', date],
-  //   queryFn: () =>
-  //     fetch(`http://localhost:5000/appointments?date=${date}`).then(res =>
-    
-  //       res.json()
-  //     ),
-  // });
-  // if (isLoading) {
-  //   return <Loading />;
-  // }
+
   return (
     <div>
       <section className="mt-6 mx-40 pb-20">

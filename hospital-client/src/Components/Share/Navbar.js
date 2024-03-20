@@ -25,19 +25,10 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-      {/* <li className=" hover:text-orange-600  text-xl">
-        <Link to="/">
-          <FaHome className="text-slate-400" />
-        </Link>
-      </li> */}
+     
       <li className=" hover:text-orange-600">
-        <Link to="/blogs">Find A Doctor</Link>
+        <Link to="/appointment">Book A Appointment</Link>
       </li>
-      {user && (
-        <li className=" hover:text-orange-600">
-          <Link to="/myOrders">Department</Link>
-        </li>
-      )}
       <li className=" hover:text-orange-600">
         <Link to="/about">About</Link>
       </li>
@@ -48,18 +39,7 @@ const Navbar = () => {
         </li>
       )}
 
-      <li className=" hover:text-orange-600">
-        <Link to="/appointment">Book A Appointment</Link>
-      </li>
-      {/* <li className=" font-bold">
-        {user ? (
-          <button className=" font-bold" onClick={logout}>
-            Sign Out
-          </button>
-        ) : (
-          <Link to="/login">Login</Link>
-        )}
-      </li> */}
+     
     </>
   );
   return (

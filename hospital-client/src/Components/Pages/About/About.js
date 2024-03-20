@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FaHandPointDown } from 'react-icons/fa';
+import { useLocation } from 'react-router-dom';
 import Footer from '../../Share/Footer';
 
 const About = () => {
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
   return (
     <div className="pt-20">
       <div>

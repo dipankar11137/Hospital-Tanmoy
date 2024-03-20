@@ -1,23 +1,25 @@
 
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { AiOutlineUser } from 'react-icons/ai';
-import { BiEdit } from 'react-icons/bi';
 import { FaUserMd, FaUserPlus } from 'react-icons/fa';
 
 import {
-  MdContactMail,
   MdDashboard
 } from 'react-icons/md';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import auth from '../../../firebase.init';
 
 const Dashboard = () => {
   const [user] = useAuthState(auth);
 
   const [open, setOpen] = useState(false);
-  const [selectedButton, setSelectedButton] = useState('');
+  const [selectedButton, setSelectedButton] = useState('Button 10');
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
   return (
     <div className="bg-white pt-16">
       <div className="">
@@ -70,19 +72,18 @@ const Dashboard = () => {
                     onClick={() => setSelectedButton('Button 10')}
                     className={
                       selectedButton === 'Button 10'
-                        ? 'bg-primary text-black rounded-lg'
+                        ? 'bg-white text-black w-[215px] rounded-lg'
                         : ''
                     }
                   >
                     {' '}
                     <Link
                       to="/dashboard"
-                      className={`  group flex items-center text-xl  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2 hover:bg-warning rounded-md`}
                     >
                       <div>
                         {React.createElement(MdDashboard, {
                           size: '20',
-                          color: 'white',
                         })}
                       </div>
                       <h2
@@ -103,14 +104,14 @@ const Dashboard = () => {
                     onClick={() => setSelectedButton('Button 5')}
                     className={
                       selectedButton === 'Button 5'
-                        ? 'bg-primary text-white rounded-lg'
+                        ? 'bg-white text-black w-[215px] rounded-lg'
                         : ''
                     }
                   >
                     {' '}
                     <Link
                       to="/dashboard/addDoctor"
-                      className={`  group flex items-center text-xl  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px] gap-3.5 font-medium p-2  hover:bg-warning rounded-md`}
                     >
                       <div>
                         {React.createElement(FaUserPlus, {
@@ -135,14 +136,14 @@ const Dashboard = () => {
                     onClick={() => setSelectedButton('Button 6')}
                     className={
                       selectedButton === 'Button 6'
-                        ? 'bg-primary text-white rounded-lg '
+                        ? 'bg-white w-[215px] text-black rounded-lg '
                         : ''
                     }
                   >
                     {' '}
                     <Link
                       to="/dashboard/manageDoctor"
-                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
+                      className={`  group flex items-center text-xl w-[215px]  gap-3.5 font-medium p-2 hover:bg-warning rounded-md`}
                     >
                       <div>
                         {React.createElement(FaUserMd, {
@@ -158,102 +159,7 @@ const Dashboard = () => {
                           'opacity-0 translate-x-28 overflow-hidden w-[215px]'
                         }`}
                       >
-                        Manage DOctor
-                      </h2>
-                    </Link>
-                  </div>
-                  {/* Profile */}
-                  <div
-                    onClick={() => setSelectedButton('Button 1')}
-                    className={
-                      selectedButton === 'Button 1'
-                        ? 'bg-primary text-black rounded-lg'
-                        : ''
-                    }
-                  >
-                    {' '}
-                    <Link
-                      to="/dashboard/profile"
-                      className={`  group flex items-center text-xl  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
-                    >
-                      <div>
-                        {React.createElement(AiOutlineUser, {
-                          size: '20',
-                          color: 'white',
-                        })}
-                      </div>
-                      <h2
-                        style={{
-                          transitionDelay: `${0 + 3}00ms`,
-                        }}
-                        className={`whitespace-pre duration-500 text-white ${
-                          !open && 'opacity-0 translate-x-28 overflow-hidden '
-                        }`}
-                      >
-                        Profile
-                      </h2>
-                    </Link>
-                  </div>
-                  {/* edit profile */}
-                  <div
-                    onClick={() => setSelectedButton('Button 2')}
-                    className={
-                      selectedButton === 'Button 2'
-                        ? 'bg-primary text-black rounded-lg'
-                        : ''
-                    }
-                  >
-                    {' '}
-                    <Link
-                      to="/dashboard/editProfile"
-                      className={`  group flex items-center text-xl  gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
-                    >
-                      <div>
-                        {React.createElement(BiEdit, {
-                          size: '20',
-                          color: 'white',
-                        })}
-                      </div>
-                      <h2
-                        style={{
-                          transitionDelay: `${0 + 3}00ms`,
-                        }}
-                        className={`whitespace-pre duration-500 text-white ${
-                          !open && 'opacity-0 translate-x-28 overflow-hidden '
-                        }`}
-                      >
-                        Edit Profile
-                      </h2>
-                    </Link>
-                  </div>
-                  {/* Manage contact */}
-                  <div
-                    onClick={() => setSelectedButton('Button 7')}
-                    className={
-                      selectedButton === 'Button 7'
-                        ? 'bg-primary text-white rounded-lg '
-                        : ''
-                    }
-                  >
-                    {' '}
-                    <Link
-                      to="/dashboard/users"
-                      className={`  group flex items-center text-xl  w-[215px] gap-3.5 font-medium p-2 hover:bg-primary rounded-md`}
-                    >
-                      <div>
-                        {React.createElement(MdContactMail, {
-                          size: '20',
-                        })}
-                      </div>
-                      <h2
-                        style={{
-                          transitionDelay: `${0 + 3}00ms`,
-                        }}
-                        className={`whitespace-pre duration-500 ${
-                          !open && 'opacity-0 translate-x-28 overflow-hidden '
-                        }`}
-                      >
-                        Manage Contact
+                        Manage Doctor
                       </h2>
                     </Link>
                   </div>
