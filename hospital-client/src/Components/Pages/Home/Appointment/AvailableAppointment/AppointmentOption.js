@@ -27,15 +27,13 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
           <p className="text-[10px] my-1 font-normal">{option?.degree}</p>
         </div>
 
-        {
-         modifyDay==='friday' & option?.friday ||
-         modifyDay==='saturday' & option?.saturday ||
-         modifyDay==='sunday' & option?.sunday ||
-         modifyDay==='monday' & option?.monday ||
-         modifyDay==='tuesday' & option?.tuesday ||
-         modifyDay==='wednesday' & option?.wednesday ||
-         modifyDay==='thursday' & option?.thursday 
-        ? (
+        {(modifyDay === 'friday') & option?.friday ||
+        (modifyDay === 'saturday') & option?.saturday ||
+        (modifyDay === 'sunday') & option?.sunday ||
+        (modifyDay === 'monday') & option?.monday ||
+        (modifyDay === 'tuesday') & option?.tuesday ||
+        (modifyDay === 'wednesday') & option?.wednesday ||
+        (modifyDay === 'thursday') & option?.thursday ? (
           <>
             <h1 className="text-center text-sm text-indigo-800 font-bold">
               This Day is Off day
@@ -63,11 +61,13 @@ const AppointmentOption = ({ option, setCounseling, day }) => {
         <div className="card-actions justify-center -mb-5">
           <label
             disabled={
-              slots.length === 0 ||
-              day === option?.day ||
-              day === option?.day1 ||
-              day === option?.day2 ||
-              day === option?.day3
+              (modifyDay === 'friday') & option?.friday ||
+              (modifyDay === 'saturday') & option?.saturday ||
+              (modifyDay === 'sunday') & option?.sunday ||
+              (modifyDay === 'monday') & option?.monday ||
+              (modifyDay === 'tuesday') & option?.tuesday ||
+              (modifyDay === 'wednesday') & option?.wednesday ||
+              (modifyDay === 'thursday') & option?.thursday
             }
             onClick={() => setCounseling(option)}
             htmlFor="booking-modal"

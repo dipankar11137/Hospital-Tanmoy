@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ManageDoctor from './ManageDoctor';
 
 const ManageDoctors = () => {
@@ -11,13 +12,28 @@ const ManageDoctors = () => {
        .then(data => setDoctors(data));
    }, [doctors]);
   
-  const handleDetails = id => {
+  const handleEdit = id => {
     navigator(`/dashboard/editDoctor/${id}`);
+  }
+  const handleDelete = (id) => {
+       const proceed = window.confirm('Are You Sure ?');
+       if (proceed) {
+         const url = `http://localhost:5000/doctorDelete/${id}`;
+         fetch(url, {
+           method: 'DELETE',
+         })
+           .then(res => res.json())
+           .then(data => {
+             const remaining = doctors.filter(product => product._id !== id);
+             setDoctors(remaining);
+             toast.success('Successfully Delete');
+           });
+       }
   }
   return (
     <div className="mx-7">
       <div>
-        <h1>Doctor</h1>
+        <h1 className='text-3xl m-2 font-semibold text-indigo-900'> All Doctors</h1>
       </div>
       <div className="overflow-x-auto">
         <table className="table  w-full text-slate-900 border-[1px] rounded-lg">
@@ -50,8 +66,8 @@ const ManageDoctors = () => {
                 key={doctor._id}
                 doctor={doctor}
                 index={index + 1}
-                // handleDelete={handleDelete}
-                handleDetails={handleDetails}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
               ></ManageDoctor>
             ))}
           </tbody>
