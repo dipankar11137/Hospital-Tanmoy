@@ -76,18 +76,23 @@ async function run() {
     });
 
     // // //  *********  appointments  ********//
+ 
 
     // // get appointments to query multiple collection  and them marge data
-
     app.get('/appointments', async (req, res) => {
-      const date = req.query.date;
-      const query = {};
+      const { date, department } = req.query;
+      const query = {}; // Your initial query conditions
+
+      if (department) {
+        query.department = department; // Add department filter to the query
+      }
+     
       const options = await appointmentCollection.find(query).toArray();
       const bookingQuery = { appointmentDate: date };
       const alreadyBooked = await bookingCollection
         .find(bookingQuery)
         .toArray();
-      //
+
       options.forEach(option => {
         const optionBooked = alreadyBooked.filter(
           book => book.doctorName === option.name
@@ -98,8 +103,31 @@ async function run() {
         );
         option.slots = remainingSlots;
       });
+
       res.send(options);
     });
+
+    // app.get('/appointments', async (req, res) => {
+    //   const date = req.query.date;
+    //   const query = {};
+    //   const options = await appointmentCollection.find(query).toArray();
+    //   const bookingQuery = { appointmentDate: date };
+    //   const alreadyBooked = await bookingCollection
+    //     .find(bookingQuery)
+    //     .toArray();
+    //   //
+    //   options.forEach(option => {
+    //     const optionBooked = alreadyBooked.filter(
+    //       book => book.doctorName === option.name
+    //     );
+    //     const bookedSlots = optionBooked.map(book => book.slot);
+    //     const remainingSlots = option.slots.filter(
+    //       slot => !bookedSlots.includes(slot)
+    //     );
+    //     option.slots = remainingSlots;
+    //   });
+    //   res.send(options);
+    // });
 
     // Post appointments
     app.post('/appointments', async (req, res) => {
@@ -119,6 +147,14 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await appointmentCollection.findOne(query);
+      res.send(result);
+    });
+    //  Booking filter by department
+    app.get('/doctorDepartment/:department', async (req, res) => {
+      const department = req.params.department;
+      const query = { department };
+      const cursor = appointmentCollection.find(query);
+      const result = await cursor.toArray();
       res.send(result);
     });
     // Delete one contact
