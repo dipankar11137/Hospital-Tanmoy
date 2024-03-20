@@ -25,10 +25,14 @@ const Navbar = () => {
 
   const menuItems = (
     <>
-     
       <li className=" hover:text-orange-600">
         <Link to="/appointment">Book A Appointment</Link>
       </li>
+      {user && (
+        <li className=" hover:text-orange-600">
+          <Link to="/myBooking">My Booking</Link>
+        </li>
+      )}
       <li className=" hover:text-orange-600">
         <Link to="/about">About</Link>
       </li>
@@ -38,8 +42,6 @@ const Navbar = () => {
           <Link to="/dashboard">Dashboard</Link>
         </li>
       )}
-
-     
     </>
   );
   return (

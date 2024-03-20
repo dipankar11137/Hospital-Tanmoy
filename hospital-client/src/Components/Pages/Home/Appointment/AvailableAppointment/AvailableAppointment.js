@@ -91,7 +91,7 @@ useEffect(() => {
               ))}
             </select>
           </div>
-          <div>
+          {/* <div>
             <select
               // onChange={e => setName(e.target.value)}
               name="department"
@@ -104,7 +104,7 @@ useEffect(() => {
                 </option>
               ))}
             </select>
-          </div>
+          </div> */}
         </div>
 
         {result && (

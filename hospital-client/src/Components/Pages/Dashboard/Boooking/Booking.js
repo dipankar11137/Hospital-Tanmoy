@@ -23,11 +23,11 @@ const Booking = ({
         {booking?.payment ? (
           <>
             {booking?.accept ? (
-              <h1 className="text-2xl text-green-300 font-bold">Accept</h1>
+              <h1 className="text-2xl text-green-600 font-bold">Accept</h1>
             ) : (
               <button
                 onClick={() => handleAccept(booking?._id)}
-                className="bg-lime-600 px-3 py-1 rounded-md uppercase  font-semibold hover:bg-lime-700"
+                className="bg-lime-700 px-3 py-1 rounded-md uppercase  font-semibold hover:bg-lime-700"
               >
                 Accept
               </button>
@@ -43,9 +43,9 @@ const Booking = ({
             {booking?.accept ? (
               <button
                 onClick={() => handleDelivery(booking?._id)}
-                className="btn btn-sm btn-primary  rounded-md uppercase  font-semibold "
+                className="text-primary  rounded-md uppercase font-semibold "
               >
-                Done
+               Conform
               </button>
             ) : (
               <h1 className="text-xl text-orange-400 font-semibold">

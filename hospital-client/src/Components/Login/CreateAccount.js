@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import Footer from "../Share/Footer";
 
 const CreateAccount = () => {
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
@@ -66,34 +67,24 @@ const CreateAccount = () => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         width: '100%',
-        height: '900px',
+        // height: '900px',
       }}
-      className="flex justify-center  bg-slate-700"
+      className="  bg-slate-700"
     >
-      <div className="flex justify-center items-center  mt-4">
-        <div
-          style={{
-            backgroundImage: `url("https://c4.wallpaperflare.com/wallpaper/545/189/286/ship-pirate-ship-boat-sailing-ship-wallpaper-preview.jpg")`,
-            backgroundPosition: 'center',
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            width: '100%',
-            height: '100vp',
-          }}
-          className="card w-96 shadow-2xl bg-violet-200"
-        >
-          <div className="card-body text-white">
-            <h2 className="text-center text-2xl font-bold mb-5">SignUp</h2>
+      <div className="flex justify-center   pt-20 pb-5">
+        <div className="card w-96 shadow-2xl bg-violet-50">
+          <div className="card-body text-indigo-900">
+            <h2 className="text-center text-2xl font-bold mb-0">SignUp</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="flex gap-x-4 text-black">
                 <div>
                   <div className="form-control w-full   ">
                     <label className="label">
-                      <span className="label-text text-white">Name</span>
+                      <span className="label-text text-black">Name</span>
                     </label>
                     <input
-                      style={{ width: '400px' }}
+                      style={{ width: '300px' }}
                       type="text"
                       placeholder="Your name"
                       className="input input-bordered bg-white w-full   "
@@ -115,7 +106,7 @@ const CreateAccount = () => {
                   {/* email */}
                   <div className="form-control w-full   ">
                     <label className="label">
-                      <span className="label-text text-white">Email</span>
+                      <span className="label-text text-black -mt-5">Email</span>
                     </label>
                     <input
                       type="email"
@@ -145,86 +136,10 @@ const CreateAccount = () => {
                       )}
                     </label>
                   </div>
-                  {/* Phone */}
-                  <div className="form-control w-full   ">
-                    <label className="label">
-                      <span className="label-text text-white">Phone</span>
-                    </label>
-                    <input
-                      type="phone"
-                      placeholder="Write Your Phone Number"
-                      className="input input-bordered bg-white w-full   "
-                      {...register('phone', {
-                        required: {
-                          value: true,
-                          message: 'Phone is Required',
-                        },
-                      })}
-                    />
-                    <label className="label">
-                      {errors.phone?.type === 'required' && (
-                        <span className="label-text-alt text-red-500">
-                          {errors.phone.message}
-                        </span>
-                      )}
-                    </label>
-                  </div>
-                </div>
-                <div>
-                  {/* photo */}
-                  <div className="form-control w-full   ">
-                    <label className="label">
-                      <span className="label-text text-white">Image</span>
-                    </label>
-                    <input
-                      style={{ width: '400px' }}
-                      type="text"
-                      placeholder="Your Phone URL"
-                      className="input input-bordered bg-white w-full   "
-                      {...register('photo', {
-                        required: {
-                          value: true,
-                          message: 'Photo is Required',
-                        },
-                      })}
-                    />
-                    <label className="label">
-                      {errors.photo?.type === 'required' && (
-                        <span className="label-text-alt text-red-500">
-                          {errors.photo.message}
-                        </span>
-                      )}
-                    </label>
-                  </div>
-                  {/* Ship Number */}
-                  <div className="form-control w-full   ">
-                    <label className="label">
-                      <span className="label-text text-white">Ship Code</span>
-                    </label>
-                    <input
-                      style={{ width: '400px' }}
-                      type="n"
-                      placeholder="Your Ship Code"
-                      className="input input-bordered bg-white w-full   "
-                      {...register('shipCode', {
-                        required: {
-                          value: true,
-                          message: 'Ship is Required',
-                        },
-                      })}
-                    />
-                    <label className="label">
-                      {errors.shipCode?.type === 'required' && (
-                        <span className="label-text-alt text-red-500">
-                          {errors.shipCode.message}
-                        </span>
-                      )}
-                    </label>
-                  </div>
                   {/* Password */}
                   <div className="form-control w-full  ">
                     <label className="label">
-                      <span className="label-text text-white">Password</span>
+                      <span className="label-text text-black -mt-3">Password</span>
                     </label>
                     <input
                       type="password"
@@ -255,29 +170,29 @@ const CreateAccount = () => {
                     </label>
                   </div>
                 </div>
+                <div></div>
               </div>
               {signInError}
               <input
-                className="btn w-full text-white mt-9"
+                className="btn w-full text-white mt-0"
                 type="submit"
                 value="Sign Up"
               />
             </form>
-            <p>
-              <small></small>
-            </p>
-            <div className="divider">OR</div>
-            <p className="ml-2">Already Have An Account</p>
+         
+            <div className="divider ">OR</div>
+            <p className="ml-2 -mt-3">Already Have An Account</p>
 
             <Link
               to="/login"
-              className="btn btn-outline  bg-indigo-400 text-black font-extrabold hover:bg-indigo-800"
+              className="btn btn-primary  text-white  font-extrabold "
             >
               Please Login
             </Link>
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

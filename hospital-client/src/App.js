@@ -58,7 +58,23 @@ function App() {
         <Route path="/about" element={<About />}></Route>
         <Route path="/createAccount" element={<CreateAccount />}></Route>
         <Route path="/payment/:id" element={<Payment />} />
-        <Route path="appointment" element={<Appointment />} />
+
+        <Route
+          path="/myBooking"
+          element={
+            <RequireAuth>
+              <MyBookings />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="appointment"
+          element={
+            <RequireAuth>
+              <Appointment />
+            </RequireAuth>
+          }
+        />
         <Route path="/doctorDetails/:id" element={<DoctorDetails />} />
         <Route path="/login" element={<Login />}></Route>
         <Route path="/*" element={<NotFound />}></Route>
@@ -75,9 +91,7 @@ function App() {
           <Route index element={<Bookings />} />
           <Route path="bookings" element={<Bookings />} />
           <Route path="addDoctor" element={<AddDoctor />} />
-          <Route path="myBooking" element={<MyBookings />} />
           <Route path="manageDoctor" element={<ManageDoctors />} />
-
           <Route path="editDoctor/:id" element={<EditDoctor />} />
           <Route path="manageContact" element={<ManageContacts />} />
           <Route path="profile" element={<Profile />} />

@@ -82,7 +82,7 @@ const Bookings = () => {
         />
       </div> */}
       <div className="overflow-x-auto">
-        <table className="table  w-full text-slate-900">
+        <table className="table  w-full text-slate-900 border-2">
           <thead>
             <tr className="text-3xl bg-slate-900 text-center">
               <th className="bg-slate-300 text-xl text-orange-700"></th>
@@ -94,11 +94,11 @@ const Bookings = () => {
               <th className="bg-slate-300 text-xl text-orange-700">Date</th>
               <th className="bg-slate-300 text-xl text-orange-700">Slot</th>
               <th className="bg-slate-300 text-xl text-orange-700">Status</th>
-              <th className="bg-slate-300 text-xl text-orange-700">Delivery</th>
+              <th className="bg-slate-300 text-xl text-orange-700">Remove</th>
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, index) => (
+            {bookings.slice().reverse().map((booking, index) => (
               <Booking
                 key={booking._id}
                 booking={booking}

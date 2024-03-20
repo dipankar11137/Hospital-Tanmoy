@@ -91,7 +91,7 @@ const Dashboard = () => {
                         style={{
                           transitionDelay: `${0 + 3}00ms`,
                         }}
-                        className={`whitespace-pre duration-500 text-white ${
+                        className={`whitespace-pre duration-500  ${
                           !open && 'opacity-0 translate-x-28 overflow-hidden '
                         }`}
                       >

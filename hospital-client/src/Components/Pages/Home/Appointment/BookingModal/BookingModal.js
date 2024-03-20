@@ -6,7 +6,7 @@ import auth from "../../../../../firebase.init";
 
 const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
   const date = format(selectDate, "PP");
-  const { name, slots,department } = counseling;
+  const { name, slots,department,img } = counseling;
   const [user] = useAuthState(auth);
   // console.log(user?.email);
 
@@ -29,6 +29,7 @@ const BookingModal = ({ counseling, selectDate, setCounseling, refetch }) => {
       phone,
       email:user?.email,
       problem,
+      img
     };
 
     fetch("http://localhost:5000/bookings", {
