@@ -37,7 +37,7 @@ const Navbar = () => {
         <Link to="/about">About</Link>
       </li>
 
-      {user && (
+      {user?.email === 'toymur15-14707@diu.edu.bd' && (
         <li className=" hover:text-orange-600">
           <Link to="/dashboard">Dashboard</Link>
         </li>

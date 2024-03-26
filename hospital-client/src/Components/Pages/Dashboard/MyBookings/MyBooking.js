@@ -11,19 +11,19 @@ const MyBooking = ({ booking, index, handleDelete }) => {
   console.log(booking)
   return (
     <tr className="text-center text-slate-800">
-      <th className="bg-slate-300">{index}</th>
-      <td className="bg-slate-300 border-r-2">
+      <th className="bg-slate-200">{index}</th>
+      <td className="bg-slate-200 border-r-2">
         <div className="flex items-center">
           <img className="w-14 h-14 rounded-md" src={booking?.img} alt="" />
           <h1 className="font-semibold ml-3">{booking?.doctorName}</h1>
         </div>
       </td>
-      <td className="bg-slate-300 border-r-2">{booking?.department}</td>
-      <td className="bg-slate-300 border-r-2">{booking?.appointmentDate}</td>
-      <td className="bg-slate-300 border-r-2">{booking?.slot}</td>
-      {/* <td className="bg-slate-300 border-r-2">{phone}</td>
-      <td className="bg-slate-300 border-r-2">{description}</td> */}
-      <td className="bg-slate-300 border-r-2">
+      <td className="bg-slate-200 border-r-2">{booking?.department}</td>
+      <td className="bg-slate-200 border-r-2">{booking?.appointmentDate}</td>
+      <td className="bg-slate-200 border-r-2">{booking?.slot}</td>
+      {/* <td className="bg-slate-200 border-r-2">{phone}</td>
+      <td className="bg-slate-200 border-r-2">{description}</td> */}
+      <td className="bg-slate-200 border-r-2">
         {booking.payment ? (
           <div className="flex justify-center">
             <h1 className="text-2xl font-semibold mr-4">Paid</h1>{' '}
@@ -61,10 +61,24 @@ const MyBooking = ({ booking, index, handleDelete }) => {
           </button>
         )}
       </td>
-      <td className="bg-slate-300  border-r-2">
-        {booking.accept?<h1 className='text-lg text-green-800 font-semibold'>Accepted</h1>:<h1 className='text-lg text-orange-700 font-semibold'>Pay First</h1>}
+      <td className="bg-slate-200  border-r-2">
+        {booking.accept ? (
+          <h1 className="text-lg text-green-800 font-semibold">Accepted</h1>
+        ) : (
+          <>
+            {booking.payment ? (
+              <h1 className="text-lg text-green-700 font-semibold">
+                Paid
+              </h1>
+            ) : (
+              <h1 className="text-lg text-orange-700 font-semibold">
+                Pay First
+              </h1>
+            )}
+          </>
+        )}
       </td>
-      <td className="bg-slate-300 ">
+      <td className="bg-slate-200 ">
         <button
           onClick={() => handleDelete(_id)}
           className="bg-orange-600 px-3 py-1 rounded-md uppercase text-white font-semibold hover:bg-orange-500"
